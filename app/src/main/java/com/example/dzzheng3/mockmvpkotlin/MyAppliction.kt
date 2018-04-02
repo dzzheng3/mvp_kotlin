@@ -1,6 +1,7 @@
 package com.example.dzzheng3.mockmvpkotlin
 
 import android.app.Application
+import android.content.Context
 import com.example.dzzheng3.mockmvpkotlin.injection.component.AppComponent
 import com.example.dzzheng3.mockmvpkotlin.injection.component.DaggerAppComponent
 import com.example.dzzheng3.mockmvpkotlin.injection.module.AppModule
@@ -27,6 +28,12 @@ class MyAppliction : Application() {
         if (BuildConfig.DEBUG) {
             LeakCanary.install(this)
             Sherlock.init(this)
+        }
+    }
+
+    companion object {
+        operator fun get(context: Context): MyAppliction {
+            return context.applicationContext as MyAppliction
         }
     }
 }
